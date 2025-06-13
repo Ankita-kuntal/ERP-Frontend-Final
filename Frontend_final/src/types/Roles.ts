@@ -1,0 +1,1 @@
+export type Roles = "FAC" | "HOD" | "AD" | "DEAN" | "AC" | "Scholar";
