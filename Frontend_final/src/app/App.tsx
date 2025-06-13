@@ -14,8 +14,8 @@ import { PublicLayout } from "../shared/layouts/PublicLayout";
 
 import { Login, ResetPassword, ResetPasswordForm, SetPasswordForm } from "../features/auth";
 
-// import { HomePage } from "../features/dashboard";
-// import { DashboardLayout } from "../shared/components/layouts";
+import { HomePage } from "../features/dashboard/Home";
+import { DashboardLayout } from "../shared/layouts/dashboard";
 
 // import { ProfileRouter } from "../features/profile";
 
@@ -79,7 +79,22 @@ function App() {
                 </PublicLayout>
               }
             />
+            {/* Protected routes */}
+            <Route
+              path={ROUTES.DASHBOARD}
+              element={
+                <PrivateRoute>
+                  <DashboardLayout>
+                    <Routes>
+                      {/* Dashboard home */}
+                      <Route path="/" element={<HomePage />} />
 
+
+                    </Routes>
+                  </DashboardLayout>
+                </PrivateRoute>
+              }
+            />
 
            
           </Routes>

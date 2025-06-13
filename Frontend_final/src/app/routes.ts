@@ -20,6 +20,8 @@ export const ROUTES = {
   STUDENT_SCHOLARSHIP: '/student/scholarship/',
   // PREVIOUS_SCHOLARSHIPS: '/dashboard/scholarship/previous',
 
+  EXPORT: "/dashboard/export",
+
   // SUPERVISOR: '/dashboard/supervisor',
   // STUDENT_VERIFICATION: '/dashboard/supervisor/student-verification',
   // SUBJECT_ASSIGNMENT: '/dashboard/supervisor/subject-assignment',
