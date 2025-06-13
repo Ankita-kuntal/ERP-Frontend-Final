@@ -49,9 +49,9 @@ export async function loginUser(payload: LoginPayload): Promise<ApiResponse> {
 
     // Optional logging (student vs faculty)
     if (user && 'enroll' in user) {
-      console.log('Logged in as Scholar');
+      console.log('Logged in as Scholar:', user);
     } else if (user) {
-      console.log('Logged in as Faculty');
+      console.log('Logged in as Faculty:', user);
     }
 
     logMessage('info', 'Login successful', 'login', { tokens, user });

@@ -8,7 +8,7 @@ export const ROUTES = {
   DASHBOARD: '/dashboard',
 
   /* Protected Routes (/dashboard/route)*/
-  MY_PROFILE: '/my-profile',
+  MY_PROFILE: '/dashboard/my-profile',
 
   MY_STUDENTS: '/my-students',
   DEPARTMENT_FACULTY: '/department-faculty',
@@ -20,7 +20,7 @@ export const ROUTES = {
   STUDENT_SCHOLARSHIP: '/student/scholarship/',
   // PREVIOUS_SCHOLARSHIPS: '/dashboard/scholarship/previous',
 
-  EXPORT: "/dashboard/export",
+  EXPORT: "/export",
 
   // SUPERVISOR: '/dashboard/supervisor',
   // STUDENT_VERIFICATION: '/dashboard/supervisor/student-verification',

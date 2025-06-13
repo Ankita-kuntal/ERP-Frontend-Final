@@ -17,7 +17,7 @@ import { Login, ResetPassword, ResetPasswordForm, SetPasswordForm } from "../fea
 import { HomePage } from "../features/dashboard/Home";
 import { DashboardLayout } from "../shared/layouts/dashboard";
 
-// import { ProfileRouter } from "../features/profile";
+import { ProfileRouter } from "../features/profile";
 
 // import { DepartmentFaculty } from "../features/faculty";
 // import { MyStudentsPage } from "../features/faculty";
@@ -89,13 +89,22 @@ function App() {
                       {/* Dashboard home */}
                       <Route path="/" element={<HomePage />} />
 
+                      {/* User profile page */}
+                      <Route
+                        path="my-profile"
+                        element={
+                          <PrivateRoute>
+                            <ProfileRouter />
+                          </PrivateRoute>
+                        }
+                      />
 
+                      
                     </Routes>
                   </DashboardLayout>
                 </PrivateRoute>
               }
             />
-
            
           </Routes>
         </Router>

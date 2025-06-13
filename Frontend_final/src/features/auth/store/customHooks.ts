@@ -150,7 +150,10 @@ export const useInitAuth = () => {
     const access = localStorage.getItem('accessToken');
     const refresh = localStorage.getItem('refreshToken');
 
-    if (!access || !refresh) return;
+    if (!access || !refresh) {
+      console.log("No tokens found in localStorage");
+      return;
+    }
 
     try {
       const response = await axios.get('/api/users/me', {
@@ -182,11 +185,21 @@ export const useInitAuth = () => {
         error: null,
       });
 
-      console.log("✅ Auth initialized from localStorage");
+      console.log("✅ Auth initialized from localStorage:", { faculty, scholar, selectedRole });
     } catch (error) {
-      console.error("❌ Auth initialization failed", error);
+      console.error("❌ Auth initialization failed:", error);
+      // Clear invalid tokens
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
+      // Reset auth state
+      setAuthState({
+        faculty: null,
+        scholar: null,
+        tokens: null,
+        selectedRole: null,
+        loading: false,
+        error: 'Session expired. Please login again.',
+      });
     }
   };
 

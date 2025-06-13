@@ -120,7 +120,7 @@ export const Header = () => {
                 </span>
 
                 <Link
-                  to={ROUTES.MY_PROFILE}
+                  to={`${ROUTES.DASHBOARD}/my-profile`}
                   className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
                   {profileImage ? (

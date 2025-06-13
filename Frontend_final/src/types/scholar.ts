@@ -11,6 +11,7 @@ export interface Scholar {
   university: string;
   joining_date: string; // ISO date string
   supervisor: number | null;
+  supervisor_name?: string;
   co_supervisor: number | null;
   scholarship_basic: string; // returned as string from backend
   scholarship_hra: string; // same here
