@@ -79,33 +79,29 @@ function App() {
                 </PublicLayout>
               }
             />
-            {/* Protected routes */}
+
+            {/* Dashboard routes - flat structure */}
             <Route
               path={ROUTES.DASHBOARD}
               element={
                 <PrivateRoute>
                   <DashboardLayout>
-                    <Routes>
-                      {/* Dashboard home */}
-                      <Route path="/" element={<HomePage />} />
-
-                      {/* User profile page */}
-                      <Route
-                        path="my-profile"
-                        element={
-                          <PrivateRoute>
-                            <ProfileRouter />
-                          </PrivateRoute>
-                        }
-                      />
-
-                      
-                    </Routes>
+                    <HomePage />
                   </DashboardLayout>
                 </PrivateRoute>
               }
             />
-           
+
+            <Route
+              path={ROUTES.MY_PROFILE}
+              element={
+                <PrivateRoute>
+                  <DashboardLayout>
+                    <ProfileRouter />
+                  </DashboardLayout>
+                </PrivateRoute>
+              }
+            />
           </Routes>
         </Router>
       </DarkModeProvider>
@@ -113,5 +109,4 @@ function App() {
   );
 }
 
-
-export default App
+export default App;
