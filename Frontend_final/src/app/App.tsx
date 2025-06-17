@@ -19,8 +19,9 @@ import { DashboardLayout } from "../shared/layouts/dashboard";
 
 import { ProfileRouter } from "../features/profile";
 
-// import { DepartmentFaculty } from "../features/faculty";
 import { MyStudentsPage } from "../features/faculty/myStudents/MyStudents";
+import DepartmentFacultyPage from "../features/faculty/departmentFaculty/DepartmentFaculty";
+
 // import { ManageScholarship } from "../features/faculty/scholarship/ManageScholarships";
 // import { ApproveScholarship } from "../features/faculty/scholarship/ApproveScholarship";
 
@@ -114,6 +115,17 @@ function App() {
                 </PrivateRoute>
               }
             />
+
+            <Route
+              path={ROUTES.DEPARTMENT_FACULTY}
+              element={
+                <PrivateRoute>
+                  <DashboardLayout>
+                    <DepartmentFacultyPage />
+                  </DashboardLayout>
+                </PrivateRoute>
+              }
+            />            
           </Routes>
         </Router>
       </DarkModeProvider>
