@@ -35,6 +35,7 @@ import DepartmentFacultyPage from "../features/faculty/departmentFaculty/Departm
 import { ROUTES } from "./routes";
 
 import { ToastContainer } from "react-toastify";
+import { CurrentScholarship } from "../features/students/scholarship";
 
 
 
@@ -125,7 +126,19 @@ function App() {
                   </DashboardLayout>
                 </PrivateRoute>
               }
-            />            
+            />
+            <Route
+              path={ROUTES.STUDENT_SCHOLARSHIP}
+              element={
+                <PrivateRoute>
+                  <DashboardLayout>
+                    <CurrentScholarship />
+                  </DashboardLayout>
+                </PrivateRoute>
+              }
+            />  
+
+ 
           </Routes>
         </Router>
       </DarkModeProvider>
