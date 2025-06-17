@@ -21,10 +21,20 @@ export const DarkModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   useEffect(() => {
     // Update localStorage and document class when theme changes
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
+    
+    // Remove both classes first to ensure clean state
+    document.documentElement.classList.remove('light', 'dark');
+    
+    // Add the appropriate class
+    document.documentElement.classList.add(isDarkMode ? 'dark' : 'light');
+    
+    // Update meta theme-color for mobile browsers
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute(
+        'content',
+        isDarkMode ? '#1f2937' : '#ffffff'
+      );
     }
   }, [isDarkMode]);
 

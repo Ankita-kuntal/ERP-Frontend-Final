@@ -8,6 +8,7 @@ import { AuthInitializer } from "../features/auth/store/AuthInitializer";
 import { PrivateRoute } from "../shared/PrivateRoute";
 // Dark Mode Context Provider
 import { DarkModeProvider } from "../shared/layouts/DarkModeContext";
+import { DarkModeToggle } from "../shared/layouts/DarkModeToggle";
 
 import { PublicLayout } from "../shared/layouts/PublicLayout";
 
@@ -47,6 +48,7 @@ function App() {
         <Router>
           <AuthInitializer />
           <ToastContainer />
+          <DarkModeToggle />
           <Routes>
             {/* Public routes */}
             <Route path="/" element={<Navigate to={ROUTES.LOGIN} replace />} />
@@ -136,9 +138,7 @@ function App() {
                   </DashboardLayout>
                 </PrivateRoute>
               }
-            />  
-
- 
+            />
           </Routes>
         </Router>
       </DarkModeProvider>
