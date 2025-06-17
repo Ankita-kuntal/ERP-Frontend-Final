@@ -20,7 +20,7 @@ import { DashboardLayout } from "../shared/layouts/dashboard";
 import { ProfileRouter } from "../features/profile";
 
 // import { DepartmentFaculty } from "../features/faculty";
-// import { MyStudentsPage } from "../features/faculty";
+import { MyStudentsPage } from "../features/faculty/myStudents/MyStudents";
 // import { ManageScholarship } from "../features/faculty/scholarship/ManageScholarships";
 // import { ApproveScholarship } from "../features/faculty/scholarship/ApproveScholarship";
 
@@ -34,6 +34,7 @@ import { ProfileRouter } from "../features/profile";
 import { ROUTES } from "./routes";
 
 import { ToastContainer } from "react-toastify";
+
 
 
 
@@ -98,6 +99,17 @@ function App() {
                 <PrivateRoute>
                   <DashboardLayout>
                     <ProfileRouter />
+                  </DashboardLayout>
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path={ROUTES.MY_STUDENTS}
+              element={
+                <PrivateRoute>
+                  <DashboardLayout>
+                    <MyStudentsPage />
                   </DashboardLayout>
                 </PrivateRoute>
               }
