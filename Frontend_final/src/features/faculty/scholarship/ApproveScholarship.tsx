@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import type { PendingScholarship } from "../../../services/pendingScholarship";
+import type { PendingScholarship } from "../../../services/faculty/pendingScholarship";
 
 import { useAuth } from "../../auth/store/customHooks";
 import { getScholarships } from "../../../services/getScholarships";

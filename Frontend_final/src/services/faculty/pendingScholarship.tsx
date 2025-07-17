@@ -1,10 +1,10 @@
 
 import axios from "axios";
-import type { Scholarship } from "../types/scholarship";
+import type { Scholarship } from "../../types/scholarship";
 
 const API_BASE_URL = "http://127.0.0.1:8000/api";
 
-import type { Roles as FacultyRole } from "../types/Roles";
+import type { Roles as FacultyRole } from "../../types/Roles";
 
 export interface PendingScholarship {
   id: number;

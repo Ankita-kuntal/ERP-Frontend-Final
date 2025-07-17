@@ -38,6 +38,7 @@ import { ROUTES } from "./routes";
 import { ToastContainer } from "react-toastify";
 import { ApproveScholarship } from "../features/faculty/scholarship/ApproveScholarship";
 import { ScholarshipPage } from "../features/faculty/scholarship/Scholarship";
+import { ManageScholarship } from "../features/faculty/scholarship/ManageScholarship";
 
 
 
@@ -147,6 +148,16 @@ function App() {
                 <PrivateRoute>
                   <DashboardLayout>
                     < ApproveScholarship/>
+                  </DashboardLayout>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={ROUTES.SCHOLARSHIP_MANAGEMENT}
+              element={
+                <PrivateRoute>
+                  <DashboardLayout>
+                    < ManageScholarship/>
                   </DashboardLayout>
                 </PrivateRoute>
               }

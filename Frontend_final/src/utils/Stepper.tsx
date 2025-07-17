@@ -181,7 +181,7 @@ const Stepper: React.FC<StepperProps> = ({ scholarshipId }) => {
             return (
               <div key={role} className={`flex flex-col w-20 ${alignment}`}>
                 <div className="text-sm font-semibold text-gray-800 dark:text-gray-200 truncate">
-                  {config.college.roles[role] || role}
+                  {(config.college.roles && config.college.roles[role]) ? config.college.roles[role] : role}
                 </div>
                 <div className="text-xs text-gray-500 dark:text-gray-400">
                   {label}

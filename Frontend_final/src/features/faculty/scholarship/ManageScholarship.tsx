@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useRecoilValue } from "recoil";
-import { userSelector } from "../../auth/store/authAtoms";
-import {
-  scholarshipService,
-  PendingScholarship,
-} from "../../../services/api/faculty/managescholarship";
+
+import { type PendingScholarship } from "../../../services/faculty/pendingScholarship";
+import { scholarshipService } from "../../../services/faculty/manageScholarship";
+
 import { useAuth } from "../../auth/store/customHooks";
 import { getScholarships } from "../../../services/getScholarships";
-import conf from "../../../../conf.json";
+import conf from "../../../conf.json";
 import Stepper from "../../../utils/Stepper";
 
 interface ExtendedPendingScholarship extends PendingScholarship {
@@ -111,7 +109,7 @@ export const ManageScholarship = () => {
           },
           {} as Record<string, ExtendedPendingScholarship[]>
         );
-        const data = transformedData.scholarships;
+        const data = Object.values(transformedData).flat();
         // Sort by year and month in descending order
         console.log(data);
         // </DATA HINDRANCE>
