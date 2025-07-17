@@ -36,6 +36,8 @@ import { CurrentScholarship } from "../features/students/scholarship";
 import { ROUTES } from "./routes";
 
 import { ToastContainer } from "react-toastify";
+import { ApproveScholarship } from "../features/faculty/scholarship/ApproveScholarship";
+import { ScholarshipPage } from "../features/faculty/scholarship/Scholarship";
 
 
 
@@ -125,6 +127,26 @@ function App() {
                 <PrivateRoute>
                   <DashboardLayout>
                     <DepartmentFacultyPage />
+                  </DashboardLayout>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={ROUTES.SCHOLARSHIP}
+              element={
+                <PrivateRoute>
+                  <DashboardLayout>
+                    <ScholarshipPage />
+                  </DashboardLayout>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={ROUTES.APPROVE_SCHOLARSHIP}
+              element={
+                <PrivateRoute>
+                  <DashboardLayout>
+                    < ApproveScholarship/>
                   </DashboardLayout>
                 </PrivateRoute>
               }
