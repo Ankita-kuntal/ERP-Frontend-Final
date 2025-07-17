@@ -26,7 +26,7 @@ import DepartmentFacultyPage from "../features/faculty/departmentFaculty/Departm
 // import { ManageScholarship } from "../features/faculty/scholarship/ManageScholarships";
 // import { ApproveScholarship } from "../features/faculty/scholarship/ApproveScholarship";
 
-
+import { CurrentScholarship } from "../features/students/scholarship";
 // import { CurrentScholarship, PreviousScholarships } from "../features/students/scholarship";
 // import { ScholarshipPage } from "../features/faculty/scholarship/Scholarship";
 // import { Export } from "../features/faculty/scholarship/Export";
@@ -36,7 +36,7 @@ import DepartmentFacultyPage from "../features/faculty/departmentFaculty/Departm
 import { ROUTES } from "./routes";
 
 import { ToastContainer } from "react-toastify";
-import { CurrentScholarship } from "../features/students/scholarship";
+
 
 
 

@@ -4,6 +4,7 @@ import { useAuth } from "../../../features/auth/store/customHooks";
 import { ROUTES } from "../../../app/routes";
 import { useState, useEffect } from "react";
 import type { Roles } from "../../../types/Roles";
+import { showSuccess, showError } from "../../../utils/toast";
 
 // Custom Tooltip
 const Tooltip = ({
@@ -54,11 +55,16 @@ export const Header = () => {
     console.log("selectedRole changed:", selectedRole);
   }, [selectedRole]);
   const handleLogout = async () => {
-    await logout();
-    navigate("/", { replace: true });
+    try {
+      await logout();
+      showSuccess("Logged out successfully");
+      navigate("/", { replace: true });
+    } catch (err) {
+      showError("Logout failed. Please try again.");
+    }
   };
 
-  const handleSelect = (role: Roles) => {
+  const handleSelect = (role: Role) => {
     setSelectedRole(role);
     setIsOpen(false);
   };
@@ -120,7 +126,7 @@ export const Header = () => {
                 </span>
 
                 <Link
-                  to={`${ROUTES.DASHBOARD}/my-profile`}
+                  to={ROUTES.MY_PROFILE}
                   className="p-2 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
                   {profileImage ? (

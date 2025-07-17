@@ -48,7 +48,7 @@ export const Sidebar = () => {
     }
     return location.pathname.startsWith(path) ? "bg-blue-100" : "";
   };
-  const roles: Roles[] | null =
+  const roles: Role[] | null =
     Array.isArray(user?.roles) && user.roles.length > 0 ? user.roles : null;
 
   // Role-based access control
@@ -143,7 +143,32 @@ export const Sidebar = () => {
             title="My Students"
           >
             <GraduationCap className="w-5 h-5" />
-            {!isCollapsed && <span>My Students</span>}
+            {!isCollapsed && (
+              <span>
+                {selectedRole === "HOD"
+                  ? "Department Students"
+                  : selectedRole === "FAC"
+                  ? "My Students"
+                  : "Phd Students"}
+              </span>
+            )}
+          </Link>
+        )}
+        {/* Department Faculty Management */}
+        {canAccessDepartmentFaculty && (
+          <Link
+            to={ROUTES.DEPARTMENT_FACULTY}
+            className={`flex items-center ${
+              isCollapsed ? "justify-center" : "space-x-2"
+            } p-3 rounded-lg ${
+              isActive(ROUTES.DEPARTMENT_FACULTY)
+                ? "bg-blue-100 dark:bg-blue-900"
+                : "hover:bg-gray-100 dark:hover:bg-gray-700"
+            }`}
+            title="Department Faculty"
+          >
+            <Users className="w-5 h-5" />
+            {!isCollapsed && <span>Department Staff</span>}
           </Link>
         )}
 
@@ -202,24 +227,6 @@ export const Sidebar = () => {
               </div>
             )}
           </div>
-        )}
-
-        {/* Department Faculty Management */}
-        {canAccessDepartmentFaculty && (
-          <Link
-            to={ROUTES.DEPARTMENT_FACULTY}
-            className={`flex items-center ${
-              isCollapsed ? "justify-center" : "space-x-2"
-            } p-3 rounded-lg ${
-              isActive(ROUTES.DEPARTMENT_FACULTY)
-                ? "bg-blue-100 dark:bg-blue-900"
-                : "hover:bg-gray-100 dark:hover:bg-gray-700"
-            }`}
-            title="Department Faculty"
-          >
-            <Users className="w-5 h-5" />
-            {!isCollapsed && <span>Department Faculty</span>}
-          </Link>
         )}
 
         {/* Export Section for AC role */}
