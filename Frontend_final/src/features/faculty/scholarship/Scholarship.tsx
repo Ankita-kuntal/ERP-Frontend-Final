@@ -54,8 +54,8 @@ export const ScholarshipPage = () => {
   };
 
   return (
-    <div className="p-8 dark:bg-gray-900">
-      <h1 className="text-2xl font-bold mb-6 dark:text-white">Scholarship Dashboard</h1>
+    <div className="p-8 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
+      <h1 className="text-2xl font-bold mb-6">Scholarship Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {actions.map((action) => {
           const colorClasses = getColorClasses(action.color);
@@ -64,7 +64,8 @@ export const ScholarshipPage = () => {
             <Link
               key={action.title}
               to={action.link}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col"
+              className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 overflow-hidden border border-gray-200 dark:border-gray-700 flex flex-col"
+              style={{ boxShadow: '0 2px 8px 0 rgba(0,0,0,0.04)' }}
             >
               <div className="p-6 flex-1">
                 <div className="flex items-center mb-3">
@@ -74,8 +75,9 @@ export const ScholarshipPage = () => {
                   <h3 className="text-lg font-bold text-gray-800 dark:text-white">{action.title}</h3>
                 </div>
                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-6">{action.description}</p>
-                <div className={`mt-auto pt-3 border-t ${colorClasses.border}`}>
-                  <div className={`${colorClasses.bg} ${colorClasses.text} py-2 px-4 rounded-lg flex items-center justify-center`}>
+                <div className={`mt-auto pt-3 border-t ${colorClasses.border} bg-gray-50 dark:bg-gray-900`}>
+                  <div className={`${colorClasses.bg} ${colorClasses.text} py-2 px-4 rounded-lg flex items-center justify-center`}
+                    style={{ background: undefined }}>
                     <span>Manage</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2">
                       <path d="M5 12h14"></path>

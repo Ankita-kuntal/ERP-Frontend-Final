@@ -66,9 +66,9 @@ export const HomePage: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="px-10 py-8 bg-gray-900 text-white min-h-screen font-sans space-y-12">
+    <div className="px-10 py-8 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen font-sans space-y-12">
       {/* Welcome Section */}
-      <div className="flex items-center justify-between bg-purple-700 rounded-2xl p-8 shadow-lg">
+      <div className="flex items-center justify-between bg-white dark:bg-purple-700 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-none">
         <div className="flex flex-col">
           <p className="text-sm mb-1">{getFormattedDate()}</p>
           <motion.h1
@@ -78,7 +78,7 @@ export const HomePage: React.FC = () => {
             className="text-3xl font-bold mt-2"
           >
             Welcome back,{" "}
-            <span className="text-purple-300">
+            <span className="text-purple-800 dark:text-purple-300 font-extrabold">
               <Typewriter
                 words={[user?.name || "NULL"]}
                 cursor
@@ -126,54 +126,48 @@ export const HomePage: React.FC = () => {
           {/* Scholarship Notification */}
           {scholarships && (
             <div>
-              <h2 className="text-xl font-semibold mb-4">
-                Scholarship Notifications
-              </h2>
-
-              <div className="bg-gray-800 rounded-xl shadow p-4 transition relative overflow-hidden">
-                <div
-                  className="flex items-center justify-between cursor-pointer"
-                  onClick={() => setOpen((prev) => !prev)}
-                >
-                  <div>
-                    <h3 className="text-white text-base font-semibold">
-                      🎓 Unreleased Scholarships Found
-                    </h3>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={`text-sm font-semibold ${
-                        remainingDays <= 10 ? "text-red-400" : "text-green-400"
-                      }`}
-                    >
-                      {remainingDays} days left
-                    </span>
-                    {open ? (
-                      <ChevronUp size={18} className="text-purple-300" />
-                    ) : (
-                      <ChevronDown size={18} className="text-purple-300" />
-                    )}
-                  </div>
+              <h2 className="text-xl font-semibold mb-4">Scholarship Notifications</h2>
+              <div
+                className="flex items-center justify-between cursor-pointer bg-purple-100 dark:bg-purple-700 rounded-lg px-4 py-3 border border-purple-200 dark:border-purple-600 shadow-sm"
+                onClick={() => setOpen((prev) => !prev)}
+              >
+                <div>
+                  <h3 className="text-purple-900 dark:text-white text-base font-semibold">
+                    🎓 Unreleased Scholarships Found
+                  </h3>
                 </div>
-
-                {/* AnimatePresence handles exit animation */}
-                <AnimatePresence>
-                  {open && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.3 }}
-                      className="mt-4 inline-block mx-auto bg-purple-700 hover:bg-purple-600 rounded-md px-4 py-2 text-sm font-medium text-white cursor-pointer text-center"
-                      onClick={() =>
-                        navigate("/dashboard/student/scholarship/")
-                      }
-                    >
-                      View & Release Now →
-                    </motion.div>
+                <div className="flex items-center gap-2">
+                  <span
+                    className={`text-sm font-semibold ${
+                      remainingDays <= 10 ? "text-red-600 dark:text-red-300" : "text-green-700 dark:text-green-300"
+                    }`}
+                  >
+                    {remainingDays} days left
+                  </span>
+                  {open ? (
+                    <ChevronUp size={18} className="text-purple-700 dark:text-purple-200" />
+                  ) : (
+                    <ChevronDown size={18} className="text-purple-700 dark:text-purple-200" />
                   )}
-                </AnimatePresence>
+                </div>
               </div>
+              {/* AnimatePresence handles exit animation */}
+              <AnimatePresence>
+                {open && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="mt-4 inline-block mx-auto bg-purple-700 hover:bg-purple-600 rounded-md px-4 py-2 text-sm font-medium text-white cursor-pointer text-center shadow"
+                    onClick={() =>
+                      navigate("/dashboard/student/scholarship/")
+                    }
+                  >
+                    View & Release Now →
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           )}
         </div>
@@ -194,7 +188,7 @@ export const HomePage: React.FC = () => {
                     delay: idx * 0.1, // 👈 stagger animation
                     ease: "easeOut",
                   }}
-                  className="aspect-square flex flex-col items-center justify-center text-center bg-gray-800 p-3 rounded-xl shadow hover:bg-gray-700 transition"
+                  className="aspect-square flex flex-col items-center justify-center text-center bg-white dark:bg-gray-800 p-3 rounded-xl shadow hover:bg-gray-100 dark:hover:bg-gray-700 transition border border-gray-200 dark:border-gray-700"
                 >
                   <img
                     src={sup.src}
@@ -217,7 +211,7 @@ export const HomePage: React.FC = () => {
                 See all
               </button> */}
             </div>
-            <div className="bg-gray-800 rounded-xl p-5 space-y-4">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-5 space-y-4 border border-gray-200 dark:border-gray-700 shadow-sm">
               <Notice
                 title="Beta Version Notice"
                 content="The site is under beta version. Developers are working to improve the site. Please provide any bugs or suggestions using the feedback form."
@@ -236,11 +230,11 @@ const StatCard: React.FC<StatCardProps> = ({ title, count, icon, active }) => (
     initial={{ opacity: 0, scale: 0.9 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.4, ease: "easeOut" }}
-    className={`bg-gray-800 text-center py-10 px-4 rounded-xl shadow border border-gray-700 hover:bg-gray-700 transition ${
-      active
-        ? "bg-purple-800 border-2 border-purple-500 scale-[1.02]"
-        : "bg-gray-800"
-    }`}
+    className={`text-center py-10 px-4 rounded-xl shadow-sm border transition font-medium 
+      ${active
+        ? "bg-purple-100 dark:bg-purple-800 border-2 border-purple-500 scale-[1.02] text-purple-900 dark:text-white"
+        : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700"}
+    `}
   >
     {/* <div className="text-4xl mb-3">{icon}</div> */}
     <div className="text-5xl font-extrabold text-white mb-1">{count}</div>
