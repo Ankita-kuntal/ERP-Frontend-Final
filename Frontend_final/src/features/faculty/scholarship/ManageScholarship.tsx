@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import { type PendingScholarship } from "../../../services/faculty/pendingScholarship";
-import { scholarshipService } from "../../../services/faculty/manageScholarship";
+import { scholarshipService } from "../../../services/faculty/managescholarship";
 
 import { useAuth } from "../../auth/store/customHooks";
 import { getScholarships } from "../../../services/getScholarships";
@@ -97,7 +97,7 @@ export const ManageScholarship = () => {
         });
 
         // <DATA HINDRANCE> ===Rajes===
-        const transformedData = Object.entries(response).reduce(
+        const transformedData = Object.entries(response as Record<string, PendingScholarship[]>).reduce(
           (acc, [role, scholarships]) => {
             acc[role] = scholarships.map((scholarship: PendingScholarship) => ({
               ...scholarship,
@@ -235,7 +235,7 @@ export const ManageScholarship = () => {
 
   return (
     <div className="p-6 dark:bg-gray-900">
-      <h2 className="text-2xl font-bold mb-4 dark:text-white">
+      <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
         Manage Scholarships
       </h2>
 
@@ -244,7 +244,7 @@ export const ManageScholarship = () => {
         <select
           value={filterMonth}
           onChange={(e) => setFilterMonth(e.target.value)}
-          className="border px-3 py-1 rounded bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+          className="border px-3 py-1 rounded bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white"
         >
           <option value="">All Months</option>
           {monthsDesc.map((m) => (
@@ -257,7 +257,7 @@ export const ManageScholarship = () => {
         <select
           value={filterYear}
           onChange={(e) => setFilterYear(e.target.value)}
-          className="border px-3 py-1 rounded bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+          className="border px-3 py-1 rounded bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white"
         >
           <option value="">All Years</option>
           {[...new Set(pendingScholarships.map((s) => s.year))]
@@ -303,7 +303,7 @@ export const ManageScholarship = () => {
               >
                 <div className="flex justify-between items-center">
                   <div>
-                    <p className="font-medium dark:text-white">
+                    <p className="font-medium text-gray-900 dark:text-white">
                       {sch.student_name}
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -325,7 +325,7 @@ export const ManageScholarship = () => {
             <>
               <div className="bg-white dark:bg-gray-800 p-6 rounded-md shadow space-y-4">
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold dark:text-white">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                     Scholarship Details
                   </h3>
                 </div>

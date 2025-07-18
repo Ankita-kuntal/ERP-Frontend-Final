@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Home,
@@ -42,11 +42,13 @@ export const Sidebar = () => {
     setIsScholarshipOpen(location.pathname.startsWith(ROUTES.SCHOLARSHIP));
   }, [location.pathname]);
 
+  // FIX: Refine active state for light mode sidebar items for better contrast
   const isActive = (path: string) => {
     if (path === ROUTES.DASHBOARD) {
-      return location.pathname === ROUTES.DASHBOARD ? "bg-blue-100" : "";
+      // Adjusted active state to use purple accent with stronger text
+      return location.pathname === ROUTES.DASHBOARD ? "bg-purple-600 text-white" : "";
     }
-    return location.pathname.startsWith(path) ? "bg-blue-100" : "";
+    return location.pathname.startsWith(path) ? "bg-purple-600 text-white" : "";
   };
   const roles: Role[] | null =
     Array.isArray(user?.roles) && user.roles.length > 0 ? user.roles : null;
@@ -104,7 +106,7 @@ export const Sidebar = () => {
             isCollapsed ? "justify-center" : "space-x-2"
           } p-3 rounded-lg ${
             isActive(ROUTES.DASHBOARD)
-              ? "bg-blue-100 dark:bg-blue-900"
+              ? "bg-purple-600 text-white dark:bg-blue-900" // Light mode active bg and text
               : "hover:bg-gray-100 dark:hover:bg-gray-700"
           }`}
           title="Home"
@@ -120,7 +122,7 @@ export const Sidebar = () => {
             isCollapsed ? "justify-center" : "space-x-2"
           } p-3 rounded-lg ${
             isActive(ROUTES.MY_PROFILE)
-              ? "bg-blue-100 dark:bg-blue-900"
+              ? "bg-purple-600 text-white dark:bg-blue-900" // Light mode active bg and text
               : "hover:bg-gray-100 dark:hover:bg-gray-700"
           }`}
           title="My Profile"
@@ -137,7 +139,7 @@ export const Sidebar = () => {
               isCollapsed ? "justify-center" : "space-x-2"
             } p-3 rounded-lg ${
               isActive(ROUTES.MY_STUDENTS)
-                ? "bg-blue-100 dark:bg-blue-900"
+                ? "bg-purple-600 text-white dark:bg-blue-900" // Light mode active bg and text
                 : "hover:bg-gray-100 dark:hover:bg-gray-700"
             }`}
             title="My Students"
@@ -162,7 +164,7 @@ export const Sidebar = () => {
               isCollapsed ? "justify-center" : "space-x-2"
             } p-3 rounded-lg ${
               isActive(ROUTES.DEPARTMENT_FACULTY)
-                ? "bg-blue-100 dark:bg-blue-900"
+                ? "bg-purple-600 text-white dark:bg-blue-900" // Light mode active bg and text
                 : "hover:bg-gray-100 dark:hover:bg-gray-700"
             }`}
             title="Department Faculty"
@@ -180,7 +182,7 @@ export const Sidebar = () => {
                 to={ROUTES.SCHOLARSHIP}
                 className={`flex-1 flex items-center p-3 rounded-lg ${
                   isActive(ROUTES.SCHOLARSHIP)
-                    ? "bg-blue-100 dark:bg-blue-900"
+                    ? "bg-purple-600 text-white dark:bg-blue-900" // Light mode active bg and text
                     : "hover:bg-gray-100 dark:hover:bg-gray-700"
                 }`}
               >
@@ -206,7 +208,7 @@ export const Sidebar = () => {
                   to={ROUTES.APPROVE_SCHOLARSHIP}
                   className={`flex items-center p-2 rounded-lg ${
                     isActive(ROUTES.APPROVE_SCHOLARSHIP)
-                      ? "bg-blue-100 dark:bg-blue-900"
+                      ? "bg-purple-600 text-white dark:bg-blue-900" // Light mode active bg and text
                       : "hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`}
                 >
@@ -217,7 +219,7 @@ export const Sidebar = () => {
                   to={ROUTES.SCHOLARSHIP_MANAGEMENT}
                   className={`flex items-center p-2 rounded-lg ${
                     isActive(ROUTES.SCHOLARSHIP_MANAGEMENT)
-                      ? "bg-blue-100 dark:bg-blue-900"
+                      ? "bg-purple-600 text-white dark:bg-blue-900" // Light mode active bg and text
                       : "hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`}
                 >
@@ -237,7 +239,7 @@ export const Sidebar = () => {
               isCollapsed ? "justify-center" : "space-x-2"
             } p-3 rounded-lg ${
               isActive(ROUTES.EXPORT)
-                ? "bg-blue-100 dark:bg-blue-900"
+                ? "bg-purple-600 text-white dark:bg-blue-900" // Light mode active bg and text
                 : "hover:bg-gray-100 dark:hover:bg-gray-700"
             }`}
             title="Export"
@@ -255,7 +257,7 @@ export const Sidebar = () => {
               isCollapsed ? "justify-center" : "space-x-2"
             } p-3 rounded-lg ${
               isActive(ROUTES.STUDENT_SCHOLARSHIP)
-                ? "bg-blue-100 dark:bg-blue-900"
+                ? "bg-purple-600 text-white dark:bg-blue-900" // Light mode active bg and text
                 : "hover:bg-gray-100 dark:hover:bg-gray-700"
             }`}
             title="Scholarship"

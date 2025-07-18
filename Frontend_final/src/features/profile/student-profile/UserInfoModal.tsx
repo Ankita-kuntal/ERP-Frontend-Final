@@ -67,8 +67,8 @@ export const UserInfoModal: React.FC<UserFormProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-      <div className="bg-[#1E293B] text-white rounded-2xl shadow-xl p-8 w-full max-w-2xl border border-gray-700">
-        <h2 className="text-2xl font-semibold mb-6 text-white">
+      <div className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-2xl shadow-xl p-8 w-full max-w-2xl border border-gray-300 dark:border-gray-700">
+        <h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">
           Update Profile Info
         </h2>
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -77,41 +77,41 @@ export const UserInfoModal: React.FC<UserFormProps> = ({
             placeholder="Phone Number"
             value={formData.phone_number}
             onChange={handleChange}
-            className="w-full bg-[#0f172a] border border-gray-600 px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 px-4 py-3 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <textarea
             name="present_address"
             placeholder="Present Address"
             value={formData.present_address}
             onChange={handleChange}
-            className="w-full bg-[#0f172a] border border-gray-600 px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 px-4 py-3 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <textarea
             name="current_address"
             placeholder="Current Address"
             value={formData.current_address}
             onChange={handleChange}
-            className="w-full bg-[#0f172a] border border-gray-600 px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 px-4 py-3 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="file"
             accept="image/*"
             onChange={handleFileChange}
-            className="w-full text-white"
+            className="w-full text-gray-900 dark:text-white"
           />
           <input
             name="account_no"
             placeholder="Account Number"
             value={formData.account_no}
             onChange={handleChange}
-            className="w-full bg-[#0f172a] border border-gray-600 px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 px-4 py-3 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             name="ifsc"
             placeholder="IFSC Code"
             value={formData.ifsc}
             onChange={handleChange}
-            className="w-full bg-[#0f172a] border border-gray-600 px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 px-4 py-3 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <div className="flex justify-end gap-4 mt-6">
             <button

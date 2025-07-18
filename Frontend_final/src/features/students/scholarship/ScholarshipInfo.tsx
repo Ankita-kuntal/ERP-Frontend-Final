@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
-import { scholarshipService } from '../../../services/api';
-import { Scholarship, ScholarshipStatus, Stage } from '../../../types/schema';
+// FIX: Correct import path for scholarshipService
+import { scholarshipService } from '../../../services/scholarship';
+// FIX: Correct import paths for Scholarship, ScholarshipStatus, and Stage types
+import { Scholarship, ScholarshipStatus } from '../../../types/scholarship';
+import { Stage } from '../../../types/stage';
 
 interface ScholarshipInfoProps {
   studentId: string;
@@ -74,12 +77,12 @@ export const ScholarshipInfo = ({ studentId }: ScholarshipInfoProps) => {
 
   return (
     <div className="mt-8">
-      <h3 className="text-xl font-semibold mb-4 dark:text-white">Scholarship Information</h3>
+      <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Scholarship Information</h3>
       
       <div className="flex flex-col lg:flex-row gap-6">
         {/* List of scholarships */}
         <div className="lg:w-1/2">
-          <h4 className="font-medium mb-2 dark:text-white">Scholarships</h4>
+          <h4 className="font-medium mb-2 text-gray-900 dark:text-white">Scholarships</h4>
           <div className="space-y-2">
             {scholarships.map((scholarship) => (
               <div 
@@ -91,7 +94,7 @@ export const ScholarshipInfo = ({ studentId }: ScholarshipInfoProps) => {
               >
                 <div className="flex justify-between items-center">
                   <div>
-                    <div className="font-medium dark:text-white">{scholarship.month} {scholarship.year}</div>
+                    <div className="font-medium text-gray-900 dark:text-white">{scholarship.month} {scholarship.year}</div>
                     <div className="text-sm text-gray-600 dark:text-gray-400">
                       Days: {scholarship.days} | Amount: ₹{scholarship.total_pay}
                     </div>
@@ -131,7 +134,7 @@ export const ScholarshipInfo = ({ studentId }: ScholarshipInfoProps) => {
                           )}
                         </div>
                         <div className="ml-3">
-                          <div className="font-medium capitalize dark:text-white">{stage.role}</div>
+                          <div className="font-medium capitalize text-gray-900 dark:text-white">{stage.role}</div>
                           <div className="text-sm text-gray-600 dark:text-gray-400 capitalize">
                             Status: {stage.status}
                           </div>
@@ -157,4 +160,4 @@ export const ScholarshipInfo = ({ studentId }: ScholarshipInfoProps) => {
       </div>
     </div>
   );
-}; 
+};
