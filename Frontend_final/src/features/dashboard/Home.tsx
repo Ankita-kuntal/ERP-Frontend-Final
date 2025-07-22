@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
+// Import Recharts components for the Pie Chart
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
 import { useAuth } from "../auth/store/customHooks";
 import photo from "../../assets/photos/photo.png";
@@ -65,9 +67,18 @@ export const HomePage: React.FC = () => {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
 
+  // Data for the pie chart, transformed from stats state
+  const pieChartData = stats.map(stat => ({
+    name: stat.title,
+    value: stat.count,
+  }));
+
+  // Colors for the pie chart slices
+  const COLORS = ['#8884d8', '#82ca9d', '#ffc658']; // Example colors, customize as needed
+
   return (
-    <div className="px-10 py-8 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen font-sans space-y-12">
-      {/* Welcome Section */}
+    <div className="px-10 py-8 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen font-sans space-y-12">
+      {/* Welcome Section - Kept as is */}
       <div className="flex items-center justify-between bg-purple-600 dark:bg-purple-700 rounded-2xl p-8 shadow-lg hover:shadow-xl hover:scale-[1.005] transition-all duration-300 border border-gray-200 dark:border-none">
         <div className="flex flex-col">
           <p className="text-sm mb-1 text-purple-100 dark:text-purple-200">{getFormattedDate()}</p>
@@ -107,23 +118,47 @@ export const HomePage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         {/* Left (2/3) */}
         <div className="lg:col-span-2 space-y-10">
-          {/* Scholarship Stats */}
-          <div>
-            <h2 className="text-xl font-semibold mb-4">Scholarship Summary</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              {stats.map((stat, idx) => (
-                <StatCard
-                  key={idx}
-                  title={stat.title}
-                  count={stat.count}
-                  icon={stat.icon}
-                  active={stat.active}
-                />
-              ))}
+          {/* Pie Chart Section (replaces Scholarship Stats) - ONLY CHANGES HERE */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-700">
+            <h2 className="text-xl font-semibold mb-4">Scholarship Summary</h2> {/* Kept original h2 classes */}
+            <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between h-72"> {/* Adjusted height and flex for layout */}
+                <div className="w-full md:w-2/3 h-full"> {/* Chart occupies 2/3 width on medium screens */}
+                    <ResponsiveContainer width="100%" height="100%">
+                        <PieChart>
+                            <Pie
+                                data={pieChartData}
+                                cx="50%"
+                                cy="50%"
+                                labelLine={false}
+                                outerRadius={80} // Adjust outerRadius for size
+                                fill="#8884d8"
+                                dataKey="value"
+                                // Removed the label prop here to prevent cutoff/overlap
+                            >
+                                {pieChartData.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                ))}
+                            </Pie>
+                            <Tooltip /> {/* Tooltip for showing values on hover */}
+                        </PieChart>
+                    </ResponsiveContainer>
+                </div>
+                <div className="w-full md:w-1/3 flex flex-col items-center md:items-start justify-center md:justify-start mt-4 md:mt-0 md:ml-4"> {/* Legend section occupies 1/3 width */}
+                    <h3 className="text-lg font-medium mb-2 text-gray-900 dark:text-white">Legend</h3> {/* Kept default text color, can be adjusted */}
+                    {pieChartData.map((entry, index) => (
+                        <div key={entry.name} className="flex items-center mb-1">
+                            <span
+                                className="inline-block w-4 h-4 rounded-full mr-2"
+                                style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                            ></span>
+                            <span className="text-gray-900 dark:text-gray-300 text-sm">{entry.name}</span> {/* Kept default text color, can be adjusted */}
+                        </div>
+                    ))}
+                </div>
             </div>
           </div>
 
-          {/* Scholarship Notification */}
+          {/* Scholarship Notification - Kept as is */}
           {scholarships && (
             <div>
               <h2 className="text-xl font-semibold mb-4">Scholarship Notifications</h2>
@@ -172,9 +207,9 @@ export const HomePage: React.FC = () => {
           )}
         </div>
 
-        {/* Right (1/3) */}
+        {/* Right (1/3) - Kept as is */}
         <div className="space-y-10">
-          {/* Supervisors */}
+          {/* Supervisors - Kept as is */}
           <div>
             <h2 className="text-xl font-semibold mb-4">Members</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -203,7 +238,7 @@ export const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Daily Notices */}
+          {/* Daily Notices - Kept as is */}
           <div>
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">Daily Notice</h2>
@@ -211,7 +246,6 @@ export const HomePage: React.FC = () => {
                 See all
               </button> */}
             </div>
-            {/* FIX: Changed border-gray-200 to border-purple-200 for a light purple border */}
             <div className="bg-white dark:bg-gray-800 rounded-xl p-5 space-y-4 border border-purple-200 dark:border-gray-700 shadow-sm">
               <Notice
                 title="Beta Version Notice"
@@ -225,7 +259,7 @@ export const HomePage: React.FC = () => {
   );
 };
 
-// Components
+// Components - StatCard and Notice are kept as is, as per your request
 const StatCard: React.FC<StatCardProps> = ({ title, count, icon, active }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.9 }}
@@ -237,10 +271,8 @@ const StatCard: React.FC<StatCardProps> = ({ title, count, icon, active }) => (
         : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 hover:shadow-lg"}
     `}
   >
-    {/* <div className="text-4xl mb-3">{icon}</div> */}
-    {/* FIX: Number in purple box to be white, others to be purple-800 */}
+    {/* Removed icon from here as it's not being used and was commented out */}
     <div className={`text-5xl font-extrabold ${active ? 'text-white' : 'text-purple-800'} dark:text-white mb-1`}>{count}</div>
-    {/* FIX: Label in purple box to be white, labels in white boxes to be purple-900 */}
     <div className={`text-sm ${active ? 'text-white' : 'text-purple-900'} dark:text-gray-400 h-8 flex items-center justify-center`}>{title}</div>
   </motion.div>
 );
