@@ -1,6 +1,7 @@
 import axios from "axios";
 import config from "../conf.json";
 import { logMessage } from "../utils/logger";
+import { getAccessToken } from './auth';
 const API = axios.create({
   baseURL: `${config.backend}/api`,
 });
@@ -24,7 +25,11 @@ export const getFaculty = async (
   const url = `/users/faculty/${queryString ? `?${queryString}` : ""}`;
 
   try {
-    const res = await API.get(url);
+    const res = await API.get(url, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
     logMessage("info", "Student data fetched", context, res.data);
     return res.data;
   } catch (err) {
