@@ -66,19 +66,19 @@ export const HomePage: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="px-10 py-8 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen font-sans space-y-12">
+    <div className="px-10 py-8 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen font-sans space-y-12">
       {/* Welcome Section */}
-      <div className="flex items-center justify-between bg-white dark:bg-purple-700 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-none">
+      <div className="flex items-center justify-between bg-purple-600 dark:bg-purple-700 rounded-2xl p-8 shadow-lg hover:shadow-xl hover:scale-[1.005] transition-all duration-300 border border-gray-200 dark:border-none">
         <div className="flex flex-col">
-          <p className="text-sm mb-1">{getFormattedDate()}</p>
+          <p className="text-sm mb-1 text-purple-100 dark:text-purple-200">{getFormattedDate()}</p>
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl font-bold mt-2"
+            className="text-3xl font-bold mt-2 text-white"
           >
             Welcome back,{" "}
-            <span className="text-purple-800 dark:text-purple-300 font-extrabold">
+            <span className="text-purple-200 dark:text-purple-300 font-extrabold">
               <Typewriter
                 words={[user?.name || "NULL"]}
                 cursor
@@ -90,7 +90,7 @@ export const HomePage: React.FC = () => {
             </span>
           </motion.h1>
 
-          <p className="text-sm text-purple-200">
+          <p className="text-sm text-purple-100 dark:text-purple-200">
             Always stay updated in your student portal
           </p>
         </div>
@@ -188,16 +188,16 @@ export const HomePage: React.FC = () => {
                     delay: idx * 0.1, // 👈 stagger animation
                     ease: "easeOut",
                   }}
-                  className="aspect-square flex flex-col items-center justify-center text-center bg-white dark:bg-gray-800 p-3 rounded-xl shadow hover:bg-gray-100 dark:hover:bg-gray-700 transition border border-gray-200 dark:border-gray-700"
+                  className="aspect-square flex flex-col items-center justify-center text-center bg-white dark:bg-gray-800 p-3 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200 border border-gray-200 dark:border-gray-700"
                 >
                   <img
                     src={sup.src}
                     alt={sup.name}
                     onError={(e) => (e.currentTarget.src = photo)}
-                    className="w-24 h-24 rounded-full object-cover border-2 border-purple-500 mb-4"
+                    className="w-24 h-24 rounded-full object-cover border-2 border-purple-500 mb-2"
                   />
-                  <p className="text-sm font-medium">{sup.name}</p>
-                  <p className="text-xs text-gray-400">{sup.role}</p>
+                  <p className="text-sm font-medium text-purple-800 dark:text-white">{sup.name}</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">{sup.role}</p>
                 </motion.div>
               ))}
             </div>
@@ -211,7 +211,8 @@ export const HomePage: React.FC = () => {
                 See all
               </button> */}
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-5 space-y-4 border border-gray-200 dark:border-gray-700 shadow-sm">
+            {/* FIX: Changed border-gray-200 to border-purple-200 for a light purple border */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-5 space-y-4 border border-purple-200 dark:border-gray-700 shadow-sm">
               <Notice
                 title="Beta Version Notice"
                 content="The site is under beta version. Developers are working to improve the site. Please provide any bugs or suggestions using the feedback form."
@@ -232,13 +233,15 @@ const StatCard: React.FC<StatCardProps> = ({ title, count, icon, active }) => (
     transition={{ duration: 0.4, ease: "easeOut" }}
     className={`text-center py-10 px-4 rounded-xl shadow-sm border transition font-medium 
       ${active
-        ? "bg-purple-100 dark:bg-purple-800 border-2 border-purple-500 scale-[1.02] text-purple-900 dark:text-white"
-        : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700"}
+        ? "bg-purple-600 dark:bg-purple-800 border-2 border-purple-500 scale-[1.02] text-white shadow-lg" // Active card background (purple) text is white
+        : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 hover:shadow-lg"}
     `}
   >
     {/* <div className="text-4xl mb-3">{icon}</div> */}
-    <div className="text-5xl font-extrabold text-white mb-1">{count}</div>
-    <div className="text-sm text-gray-400">{title}</div>
+    {/* FIX: Number in purple box to be white, others to be purple-800 */}
+    <div className={`text-5xl font-extrabold ${active ? 'text-white' : 'text-purple-800'} dark:text-white mb-1`}>{count}</div>
+    {/* FIX: Label in purple box to be white, labels in white boxes to be purple-900 */}
+    <div className={`text-sm ${active ? 'text-white' : 'text-purple-900'} dark:text-gray-400 h-8 flex items-center justify-center`}>{title}</div>
   </motion.div>
 );
 

@@ -47,8 +47,8 @@ export const ImageModal: React.FC<ImageModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-      <div className="bg-[#1E293B] text-white rounded-2xl shadow-xl p-8 w-full max-w-2xl border border-gray-700">
-        <h2 className="text-2xl font-semibold mb-6 text-white">
+      <div className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-2xl shadow-xl p-8 w-full max-w-2xl border border-gray-300 dark:border-gray-700">
+        <h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">
           Update Profile Info
         </h2>
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -57,7 +57,7 @@ export const ImageModal: React.FC<ImageModalProps> = ({
             type="file"
             accept="image/*"
             onChange={handleFileChange}
-            className="w-full text-white"
+            className="w-full text-gray-900 dark:text-white"
           />
           <div className="flex justify-end gap-4 mt-6">
             <button

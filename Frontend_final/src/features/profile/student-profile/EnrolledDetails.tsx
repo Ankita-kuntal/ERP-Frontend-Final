@@ -25,8 +25,8 @@ export const EnrolledDetails: React.FC<EnrolledDetailsProps> = ({ user }) => {
       </p>
       <p className="text-gray-500 dark:text-gray-400 mb-2">
         Registration: {user.registration}
+      </p> {/* FIX: Closed the previous <p> tag and added new ones for each detail */}
       <p className="text-gray-500 dark:text-gray-400 mb-2">
-      </p>
         Course: {user.course}
       </p>
       <p className="text-gray-500 dark:text-gray-400 mb-2">
