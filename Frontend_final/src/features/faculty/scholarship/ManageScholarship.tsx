@@ -4,7 +4,7 @@ import { type PendingScholarship } from "../../../services/faculty/pendingSchola
 import { scholarshipService } from "../../../services/faculty/manageScholarship";
 
 import { useAuth } from "../../auth/store/customHooks";
-import { getScholarships } from "../../../services/getScholarships";
+import { getScholarships } from "../../../services/scholarship";
 import conf from "../../../conf.json";
 import Stepper from "../../../utils/Stepper";
 

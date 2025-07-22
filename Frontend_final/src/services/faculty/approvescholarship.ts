@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getAccessToken } from '../auth';
 
 // Types for the request and response
 interface ScholarshipApprovalRequest {
@@ -72,6 +73,7 @@ export const approveScholarship = async (
       {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${getAccessToken()}`,
         },
       }
     );

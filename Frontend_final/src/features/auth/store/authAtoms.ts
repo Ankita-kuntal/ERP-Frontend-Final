@@ -10,7 +10,7 @@ export const authStateAtom = atom<AuthState>({
     faculty: null,
     tokens: null,
     selectedRole: null,
-    loading: false,
+    loading: true, // Set loading to true by default
     error: null,
   },
 });
@@ -32,6 +32,7 @@ export const isAuthenticatedSelector = selector({
   key: "isAuthenticated",
   get: ({ get }) => {
     const auth = get(authStateAtom);
+    console.log('isAuthenticatedSelector:', auth);
     return !!auth.tokens?.access && (auth.scholar !== null || auth.faculty !== null);
   },
 });

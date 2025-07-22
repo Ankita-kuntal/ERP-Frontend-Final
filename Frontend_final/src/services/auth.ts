@@ -5,6 +5,7 @@ import type { Scholar } from '../types/scholar';
 import type { LoginPayload } from '../types/auth';
 
 import { logMessage } from '../utils/logger';
+import Cookies from 'js-cookie';
 
 let currentUser: Scholar | Faculty | null = null;
 
@@ -42,10 +43,8 @@ export async function loginUser(payload: LoginPayload): Promise<ApiResponse> {
 
     // Save user in memory
     currentUser = user;
-
-    // Persist tokens to localStorage
-    localStorage.setItem('accessToken', tokens.access);
-    localStorage.setItem('refreshToken', tokens.refresh);
+    // Persist tokens to cookies
+    setAuthCookies(tokens);
 
     // Optional logging (student vs faculty)
     if (user && 'enroll' in user) {
@@ -82,4 +81,22 @@ export async function loginUser(payload: LoginPayload): Promise<ApiResponse> {
 
     throw new Error('An unexpected error occurred during login');
   }
+}
+
+// Remove localStorage usage, use cookies instead
+// Utility functions
+export function setAuthCookies(tokens: Tokens) {
+  const isHttps = window.location.protocol === 'https:';
+  Cookies.set('accessToken', tokens.access, { secure: isHttps, sameSite: 'strict', expires: 7 }); // 7 days expiry
+  Cookies.set('refreshToken', tokens.refresh, { secure: isHttps, sameSite: 'strict', expires: 7 });
+}
+export function clearAuthCookies() {
+  Cookies.remove('accessToken');
+  Cookies.remove('refreshToken');
+}
+export function getAccessToken() {
+  return Cookies.get('accessToken');
+}
+export function getRefreshToken() {
+  return Cookies.get('refreshToken');
 }

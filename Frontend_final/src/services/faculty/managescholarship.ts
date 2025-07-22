@@ -1,5 +1,6 @@
 import axios from 'axios';
 import type { Scholarship } from "../../types/scholarship";
+import { getAccessToken } from '../auth';
 
 const API_BASE_URL = 'http://127.0.0.1:8000/api';
 
@@ -31,9 +32,9 @@ export const scholarshipService = {
    */
   async getScholarshipsByFacultyRole(facultyId: number, role: string): Promise<PendingScholarship[]> {
     try {
-      const token = localStorage.getItem('accessToken');
+      const token = getAccessToken();
       if (!token) {
-        console.error('No access token found in localStorage');
+        console.error('No access token found in cookies');
         throw new Error('Authentication required. Please log in again.');
       }
 
@@ -88,7 +89,7 @@ export const scholarshipService = {
    */
   async updateScholarshipStatus(scholarshipId: number, status: string): Promise<PendingScholarship> {
     try {
-      const token = localStorage.getItem('accessToken');
+      const token = getAccessToken();
       if (!token) {
         throw new Error('No access token found');
       }
@@ -121,7 +122,7 @@ export const scholarshipService = {
    */
   async updateScholarshipDays(scholarshipId: number, days: number): Promise<PendingScholarship> {
     try {
-      const token = localStorage.getItem('accessToken');
+      const token = getAccessToken();
       if (!token) {
         throw new Error('No access token found');
       }

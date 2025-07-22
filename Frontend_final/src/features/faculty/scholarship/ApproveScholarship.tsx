@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import type { PendingScholarship } from "../../../services/faculty/pendingScholarship";
 
 import { useAuth } from "../../auth/store/customHooks";
-import { getScholarships } from "../../../services/getScholarships";
-import { postScholarship } from "../../../services/postScholarship";
+import { getScholarships, postScholarship  } from "../../../services/scholarship";
+import { } from "../../../services/postScholarship";
 
 import type { Roles as Role } from "../../../types/Roles";
 import { showSuccess, showError, showInfo } from "../../../utils/toast";

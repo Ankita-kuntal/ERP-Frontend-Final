@@ -1,6 +1,7 @@
 import axios from "axios";
 import config from "../conf.json";
 import { logMessage } from "../utils/logger";
+import { getAccessToken } from "./auth";
 const API = axios.create({
   baseURL: `${config.backend}/api`,
 });

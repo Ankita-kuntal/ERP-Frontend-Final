@@ -5,6 +5,7 @@ import type { Scholarship } from "../../types/scholarship";
 const API_BASE_URL = "http://127.0.0.1:8000/api";
 
 import type { Roles as FacultyRole } from "../../types/Roles";
+import { getAccessToken } from '../auth';
 
 export interface PendingScholarship {
   id: number;
@@ -83,7 +84,7 @@ class PendingScholarshipService {
     comment: string
   ): Promise<void> {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getAccessToken();
       if (!token) {
         throw new Error("Authentication required");
       }
@@ -121,7 +122,7 @@ class PendingScholarshipService {
     comment: string
   ): Promise<void> {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getAccessToken();
       if (!token) {
         throw new Error("Authentication required");
       }
@@ -157,7 +158,7 @@ class PendingScholarshipService {
     days: number
   ): Promise<PendingScholarship> {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getAccessToken();
       if (!token) {
         throw new Error("Authentication required");
       }
