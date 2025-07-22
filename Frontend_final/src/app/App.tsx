@@ -23,26 +23,19 @@ import { ProfileRouter } from "../features/profile";
 import { MyStudentsPage } from "../features/faculty/myStudents/MyStudents";
 import DepartmentFacultyPage from "../features/faculty/departmentFaculty/DepartmentFaculty";
 
-// import { ManageScholarship } from "../features/faculty/scholarship/ManageScholarships";
-// import { ApproveScholarship } from "../features/faculty/scholarship/ApproveScholarship";
+import { ManageScholarship } from "../features/faculty/scholarship/ManageScholarship";
+import { ApproveScholarship } from "../features/faculty/scholarship/ApproveScholarship";
 
 import { CurrentScholarship } from "../features/students/scholarship";
+import { ScholarshipPage } from "../features/faculty/scholarship/Scholarship";
+
 // import { CurrentScholarship, PreviousScholarships } from "../features/students/scholarship";
-// import { ScholarshipPage } from "../features/faculty/scholarship/Scholarship";
-// import { Export } from "../features/faculty/scholarship/Export";
 
-
+   import { Export } from "../features/export/Export";
 
 import { ROUTES } from "./routes";
 
 import { ToastContainer } from "react-toastify";
-import { ApproveScholarship } from "../features/faculty/scholarship/ApproveScholarship";
-import { ScholarshipPage } from "../features/faculty/scholarship/Scholarship";
-import { ManageScholarship } from "../features/faculty/scholarship/ManageScholarship";
-
-
-
-
 
 function App() {
   return (
@@ -168,6 +161,16 @@ function App() {
                 <PrivateRoute>
                   <DashboardLayout>
                     <CurrentScholarship />
+                  </DashboardLayout>
+                </PrivateRoute>
+              }              
+            />
+            <Route
+              path={ROUTES.EXPORT}
+              element={
+                <PrivateRoute allowedRoles={["AC"]}>
+                  <DashboardLayout>
+                    <Export />
                   </DashboardLayout>
                 </PrivateRoute>
               }
