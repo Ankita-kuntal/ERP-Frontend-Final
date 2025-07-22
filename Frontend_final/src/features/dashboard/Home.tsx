@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
-// Import Recharts components for the Pie Chart
+// Added Recharts imports here
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
 import { useAuth } from "../auth/store/customHooks";
@@ -77,7 +77,7 @@ export const HomePage: React.FC = () => {
   const COLORS = ['#8884d8', '#82ca9d', '#ffc658']; // Example colors, customize as needed
 
   return (
-    <div className="px-10 py-8 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen font-sans space-y-12">
+    <div className="px-10 py-8 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen font-sans space-y-12">
       {/* Welcome Section - Kept as is */}
       <div className="flex items-center justify-between bg-purple-600 dark:bg-purple-700 rounded-2xl p-8 shadow-lg hover:shadow-xl hover:scale-[1.005] transition-all duration-300 border border-gray-200 dark:border-none">
         <div className="flex flex-col">
@@ -133,7 +133,7 @@ export const HomePage: React.FC = () => {
                                 outerRadius={80} // Adjust outerRadius for size
                                 fill="#8884d8"
                                 dataKey="value"
-                                // Removed the label prop here to prevent cutoff/overlap
+                                // Removed the label prop here to fix cut-off text as per instruction
                             >
                                 {pieChartData.map((entry, index) => (
                                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -144,14 +144,14 @@ export const HomePage: React.FC = () => {
                     </ResponsiveContainer>
                 </div>
                 <div className="w-full md:w-1/3 flex flex-col items-center md:items-start justify-center md:justify-start mt-4 md:mt-0 md:ml-4"> {/* Legend section occupies 1/3 width */}
-                    <h3 className="text-lg font-medium mb-2 text-gray-900 dark:text-white">Legend</h3> {/* Kept default text color, can be adjusted */}
+                    {/* Removed the 'Legend' heading here as per instruction */}
                     {pieChartData.map((entry, index) => (
                         <div key={entry.name} className="flex items-center mb-1">
                             <span
                                 className="inline-block w-4 h-4 rounded-full mr-2"
                                 style={{ backgroundColor: COLORS[index % COLORS.length] }}
                             ></span>
-                            <span className="text-gray-900 dark:text-gray-300 text-sm">{entry.name}</span> {/* Kept default text color, can be adjusted */}
+                            <span className="text-gray-900 dark:text-gray-300 text-sm">{entry.name}</span> {/* Kept original text color */}
                         </div>
                     ))}
                 </div>
@@ -220,7 +220,7 @@ export const HomePage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
                     duration: 0.4,
-                    delay: idx * 0.1, // 👈 stagger animation
+                    delay: idx * 0.1, 
                     ease: "easeOut",
                   }}
                   className="aspect-square flex flex-col items-center justify-center text-center bg-white dark:bg-gray-800 p-3 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-200 border border-gray-200 dark:border-gray-700"
