@@ -3,6 +3,17 @@ import { useAuth } from "../../auth/store/customHooks";
 import type { Scholar } from "../../../types/scholar";
 import { getStudent } from "../../../services/getStudent";
 
+import conf from "../../../conf.json";
+const get = (val: string, obj: Record<string, string>, ci = false) => {
+  if (!val) return val;
+  if (ci) {
+    const match = Object.keys(obj).find(
+      (k) => k.toLowerCase() === val.toLowerCase()
+    );
+    return match ? obj[match] : val;
+  }
+  return obj[val] || val;
+};
 export const StudentList = () => {
   const { user, selectedRole } = useAuth();
   const [students, setStudents] = useState<Scholar[]>([]);
@@ -14,7 +25,7 @@ export const StudentList = () => {
 
   const isFaculty = selectedRole === "FAC";
   const isHOD = selectedRole === "HOD";
-  const isDean = selectedRole === "DEAN";
+  const isDean = selectedRole === "DEAN" || selectedRole === "AD";
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -31,7 +42,6 @@ export const StudentList = () => {
           data = await getStudent(user.id, null, null);
         }
 
-        console.log("Received student data:", data);
         setStudents(data);
 
         const uniqueDepartments = [
@@ -131,20 +141,26 @@ export const StudentList = () => {
                 Name
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                Enrollment
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Department
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                Course
+                Gender
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Email
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                Scholarship Status
+                Category
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                Actions
+                Scholarship Status
               </th>
+              {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                Actions
+              </th> */}
             </tr>
           </thead>
           <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
@@ -169,42 +185,30 @@ export const StudentList = () => {
                     {student.name}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-gray-900 dark:text-white">
-                    {student.department}
+                    {student.enroll}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-gray-900 dark:text-white">
-                    {student.course}
+                    {get(student.department, conf.college.departments)}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-900 dark:text-white">
+                    {get(student.gender, conf.gender)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-gray-900 dark:text-white">
                     {student.email}
                   </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-gray-900 dark:text-white">
+                    {get(student.admission_category, conf.admission_category)}
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    {student.scholarship_basic ? (
+                    {student.admission_category === "INST_FEL" ? (
                       <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">
                         Active
                       </span>
                     ) : (
-                      <span className="px-2 py-1 bg-gray-100 text-gray-800 rounded-full text-xs">
+                      <span className="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">
                         None
                       </span>
                     )}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <button
-                      className="text-blue-600 hover:text-blue-800 mr-2"
-                      onClick={() =>
-                        window.alert("View details (not implemented)")
-                      }
-                    >
-                      View
-                    </button>
-                    <button
-                      className="text-green-600 hover:text-green-800"
-                      onClick={() =>
-                        window.alert("Manage scholarship (not implemented)")
-                      }
-                    >
-                      Manage
-                    </button>
                   </td>
                 </tr>
               ))
