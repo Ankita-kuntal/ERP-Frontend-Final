@@ -10,14 +10,14 @@ export const ROUTES = {
   /* Protected Routes (/dashboard/route)*/
   MY_PROFILE: '/dashboard/my-profile',
 
-  MY_STUDENTS: '/my-students',
+  MY_STUDENTS: '/dashboard/my-students',
   DEPARTMENT_FACULTY: '/department-faculty',
 
-  SCHOLARSHIP: '/scholarship',
-  APPROVE_SCHOLARSHIP: '/scholarship/approve',
-  SCHOLARSHIP_MANAGEMENT: '/scholarship/scholarship-management',
+  SCHOLARSHIP: '/dashboard/scholarship',
+  APPROVE_SCHOLARSHIP: '/dashboard/scholarship/approve',
+  SCHOLARSHIP_MANAGEMENT: '/dashboard/scholarship/scholarship-management',
 
-  STUDENT_SCHOLARSHIP: '/student/scholarship/',
+  STUDENT_SCHOLARSHIP: '/dashboard/student/scholarship/',
   // PREVIOUS_SCHOLARSHIPS: '/dashboard/scholarship/previous',
 
   EXPORT: "/export",

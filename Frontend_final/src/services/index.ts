@@ -179,7 +179,11 @@ export const getMembers = async ({
   const queryParams = new URLSearchParams();
   if (role === null) console.error("Role is required");
   if (id !== null) queryParams.append("id", id.toString());
-  if (role !== null) queryParams.append("role", role);
+  if (role !== null) {
+    // Convert "SCHOLAR" or "Scholar" to "scholar"
+    const roleValue = role.toString().toLowerCase() === "scholar" ? "scholar" : role;
+    queryParams.append("role", roleValue);
+  }
   const queryString = queryParams.toString();
   const url = `/users/members/${queryString ? `?${queryString}` : ""}`;
   try {
@@ -290,6 +294,35 @@ export const logout = async (token: String) => {
     const res = await API.post("/users/logout/", { refresh: token });
     logMessage("info", "Logout successful", "Logout", res.data);
     return null;
+  } catch (err) {
+    logMessage("error", "Login failed", "login", err);
+    throw err;
+  }
+};
+export const resetPassword = async (
+  password: string,
+  token: string,
+  id: number
+) => {
+  try {
+    const res = await API.post("/users/reset-password/", {
+      token: token,
+      new_password: password,
+      user: id, // Corrected from `user = id` to `user: id`
+    });
+    logMessage("info", "Reset password successful", "ResetPassword", res.data);
+    return res;
+  } catch (err) {
+    logMessage("error", "Reset password failed", "ResetPassword", err);
+    throw err;
+  }
+};
+
+export const getid = async (mail: String) => {
+  try {
+    const res = await API.get(`/users/temp/getid/?mail=${mail}`);
+    logMessage("info", "Logout successful", "Logout", res.data);
+    return res.data;
   } catch (err) {
     logMessage("error", "Login failed", "login", err);
     throw err;

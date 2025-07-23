@@ -6,6 +6,16 @@ import { useState, useEffect } from "react";
 import type { Roles } from "../../../types/Roles";
 import { showSuccess, showError } from "../../../utils/toast";
 
+// Mapping backend roles to user-friendly display names
+const roleDisplayMap: Record<Roles, string> = {
+  FAC: "Faculty",
+  HOD: "HOD",
+  AD: "Associate Dean",
+  DEAN: "Dean",
+  AC: "Accounts",
+  Scholar: "Scholar",
+};
+
 // Custom Tooltip
 const Tooltip = ({
   text,
@@ -43,7 +53,6 @@ export const Header = () => {
 
     // If selectedRole is null or not in user roles, set default role
     if (roles && roles.length > 0) {
-      // If selectedRole is missing or invalid, set roles[0]
       if (!selectedRole || !roles.includes(selectedRole)) {
         setSelectedRole(roles[0]);
       }
@@ -51,9 +60,11 @@ export const Header = () => {
 
     console.log("selectedRole: ", selectedRole);
   }, [user]);
+
   useEffect(() => {
     console.log("selectedRole changed:", selectedRole);
   }, [selectedRole]);
+
   const handleLogout = async () => {
     try {
       await logout();
@@ -64,7 +75,7 @@ export const Header = () => {
     }
   };
 
-  const handleSelect = (role: Role) => {
+  const handleSelect = (role: Roles) => {
     setSelectedRole(role);
     setIsOpen(false);
   };
@@ -82,7 +93,9 @@ export const Header = () => {
                     onClick={() => setIsOpen(!isOpen)}
                     className="flex items-center px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-all"
                   >
-                    {selectedRole}
+                    {selectedRole
+                      ? roleDisplayMap[selectedRole] || selectedRole
+                      : ""}
                     <ChevronDown className="w-4 h-4 ml-2" />
                   </button>
 
@@ -98,7 +111,7 @@ export const Header = () => {
                               : ""
                           }`}
                         >
-                          {role}
+                          {roleDisplayMap[role] || role}
                         </li>
                       ))}
                     </ul>
@@ -106,7 +119,7 @@ export const Header = () => {
                 </>
               ) : (
                 <span className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-300 rounded-lg">
-                  SCHOLAR
+                  Scholar
                 </span>
               )}
             </div>

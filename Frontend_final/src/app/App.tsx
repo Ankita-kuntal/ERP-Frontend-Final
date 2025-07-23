@@ -26,10 +26,10 @@ import DepartmentFacultyPage from "../features/faculty/departmentFaculty/Departm
 import { ManageScholarship } from "../features/faculty/scholarship/ManageScholarship";
 import { ApproveScholarship } from "../features/faculty/scholarship/ApproveScholarship";
 
-import { CurrentScholarship } from "../features/students/scholarship";
+
 import { ScholarshipPage } from "../features/faculty/scholarship/Scholarship";
 
-// import { CurrentScholarship, PreviousScholarships } from "../features/students/scholarship";
+import { CurrentScholarship, PreviousScholarships } from "../features/students/scholarship";
 
    import { Export } from "../features/export/Export";
 
@@ -161,6 +161,7 @@ function App() {
                 <PrivateRoute>
                   <DashboardLayout>
                     <CurrentScholarship />
+                    <PreviousScholarships/>
                   </DashboardLayout>
                 </PrivateRoute>
               }              
